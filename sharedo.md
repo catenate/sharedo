@@ -1,4 +1,4 @@
-Bash implementation of the build tool redo, which constructs build systems from small shared shell scripts.
+[Sharedo](https://github.com/catenate/sharedo) is a bash implementation of the build tool redo, which constructs build systems from small shared shell scripts.
 
 	git clone git@github.com:catenate/sharedo.git
 

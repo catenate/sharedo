@@ -12,4 +12,12 @@ Add to the index all untracked files that are not ignored.
 
 Commit the latest changes.
 
-	git commit -a -m 'Initial dump from prototype development.'
+	git commit -a -m 'Add a README, and update git commands.'
+
+List remote refspecs.
+
+	git remote -v
+
+Push latest commits to the origin git server.
+
+	git push origin main

@@ -12,7 +12,7 @@ Add to the index all untracked files that are not ignored.
 
 Commit the latest changes.
 
-	git commit -a -m 'Add a README, and update git commands.'
+	git commit -a -m 'Update README.'
 
 List remote refspecs.
 

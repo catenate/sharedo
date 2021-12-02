@@ -1,0 +1,8 @@
+*.dep
+*.do
+*.lit
+*.lock
+hello
+hello.c
+hello.h
+hello.o*

@@ -11,6 +11,7 @@ Status of the repo.
 Review changes.
 
 	nsh git diff
+	nsh git diff --staged
 
 Add to the index all untracked files that are not ignored.
 
@@ -18,7 +19,7 @@ Add to the index all untracked files that are not ignored.
 
 Commit the latest changes.
 
-	git commit -a -m 'Update README, and git commands for this repo.'
+	git commit -a -m 'Update git commands for this repo.'
 
 Push latest commits to the origin git server.
 

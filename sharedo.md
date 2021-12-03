@@ -1,10 +1,16 @@
-[Sharedo](https://github.com/catenate/sharedo) is a bash implementation of the build tool redo, which constructs build systems from small shared shell scripts.
+[Sharedo](https://github.com/catenate/sharedo) is a Bash variant of the build tool redo, which constructs build systems from small shared shell scripts.
 
-	git clone git@github.com:catenate/sharedo.git
+###### Changes
 
 Status of the repo.
 
 	git status
+	git status --porcelain --branch
+	git
+
+Review changes.
+
+	nsh git diff
 
 Add to the index all untracked files that are not ignored.
 
@@ -12,12 +18,18 @@ Add to the index all untracked files that are not ignored.
 
 Commit the latest changes.
 
-	git commit -a -m 'Update README.'
-
-List remote refspecs.
-
-	git remote -v
+	git commit -a -m 'Update README, and git commands for this repo.'
 
 Push latest commits to the origin git server.
 
 	git push origin main
+
+###### Remotes
+
+Clone the repository.
+
+	git clone git@github.com:catenate/sharedo.git
+
+List remote refspecs.
+
+	git remote -v

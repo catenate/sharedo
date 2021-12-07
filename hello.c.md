@@ -4,9 +4,9 @@ Header.
 
 	hello.h: #define HELLO "aloha"
 
-For .h files, generate the lit comment as a C comment.  #backlog
+For .h files, generate the lit comment as a C comment.  #done
 
-	lit 'lit=hello.c.md' 'file=hello.h' 'nocomment=true'
+	lit 'lit=hello.c.md' 'file=hello.h'
 
 C source.
 
@@ -16,9 +16,9 @@ C source.
 	hello.c:     printf(HELLO "\n");
 	hello.c: }
 
-For .c files, generate the lit comment as a C comment.  #backlog
+For .c files, generate the lit comment as a C comment.  #done
 
-	lit 'lit=hello.c.md' 'file=hello.c' 'nocomment=true'
+	lit 'lit=hello.c.md' 'file=hello.c'
 
 ##### Compile directly to an executable
 

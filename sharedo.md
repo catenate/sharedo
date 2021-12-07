@@ -19,7 +19,7 @@ Add to the index all untracked files that are not ignored.
 
 Commit the latest changes.
 
-	git commit -a -m 'Update git commands for this repo.'
+	git commit -a -m 'When lit creates .c or .h files, add a comment in C syntax.'
 
 Push latest commits to the origin git server.
 

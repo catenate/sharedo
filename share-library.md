@@ -22,6 +22,8 @@ List transformations.
 
 	lit 'lit=share-library.md' 'file=gcc.c.o.do'
 
+Construct a set of dependencies for an object file derived from a C source code file.  This includes the [[compiler version]], [[compiler flag]]s, [[definition]]s, [[local header file]]s, the [[source-code file]], and the [[build script]].
+
 	gcc.c.o.dep.do: o=$1
 	gcc.c.o.dep.do: c=$(echo $o | sed 's \.o$ .c ')
 	gcc.c.o.dep.do: share-adddep $o '$CFLAGS'
@@ -36,7 +38,10 @@ List transformations.
 
 ###### gcc from o to executable
 
-	gcc.o..do: gcc ${1}.o -o $1
+Link all object files listed among the dependencies.  This allows executables to be built from more than one object file.  This does not establish link between the executable name and the name of any object file, so the executable can be named differently than all of its object files.
+
+	gcc.o..do: o=$(share-lsdep $1 '\.o$' | awk '{print $3}')
+	gcc.o..do: gcc $o -o $1
 
 	lit 'lit=share-library.md' 'file=gcc.o..do'
 

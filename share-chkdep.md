@@ -16,16 +16,19 @@ Use the script [[header]].
 If there are no dependencies, then always rebuild the target.
 
 	share-chkdep: depdir=${target}.dep
+
+If there is a do script to create dependencies, run it.  #testing 
+
+	share-chkdep: log exec=true $echo share-do ${depdir}
+
+If there are still no dependencies, then just rebuild the target.
+
 	share-chkdep: if ! test -d $depdir; then
 	share-chkdep:     log -- "$target: no dependencies"
 	share-chkdep:     exit 0
 	share-chkdep: fi
 
 Calculate the current checksum of each dependency, and determine whether it matches the current location of the dependency.  If not, remove the current entry for the file, and add a new one.
-
-If there is a file $target.dep.do, run it.  #backlog 
-
-Handle case where there (still) is no $depdir.  #backlog 
 
 Map and parallelize this process, when it matters.  #backlog
 
@@ -34,7 +37,7 @@ Map and parallelize this process, when it matters.  #backlog
 
 Change to the directory of the dependency and redo it with share-do.
 
-For variables, use the format '$var', with no directory.  #backlog 
+For variables, use the format '$var', with no directory.  #testing 
 
 	share-chkdep:         cwd=$(pwd)
 	share-chkdep:         cd "$(dirname '$dep')"
@@ -43,7 +46,7 @@ For variables, use the format '$var', with no directory.  #backlog
 
 	$(cd "$(dirname '$dep')"; log exec=true $echo share-do "$(basename $dep)")
 
-For a target like ${target}.dep, we still want to calculate a checksum (eg, a file with a list of files (_ie_ checksums) in the repo, or a list of the dependencies in those files).  #backlog
+For a target like ${target}.dep, we still want to calculate a checksum (eg, a file with a list of files (_ie_ checksums) in the repo, or a list of the dependencies in those files).  How does this compare to just taking a checksum of the long listing of the dependency directory?  Should we add to the target's dependencies, a dependency on the dependency directory itself?   This would detect, for example, when we add an environment variable dependency, and at the same time calculate its checksum--though we solved this by always adding it with the checksum 0.  Should we add a dependency on the environment variable directory for the target?  Maybe just add these dependencies and see how it feels.  #backlog
 
 	share-chkdep:         newsum=$(share-sum "$dep")
 	share-chkdep:         if test "$oldsum" != "$newsum"; then

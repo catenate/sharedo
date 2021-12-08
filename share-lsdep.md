@@ -18,11 +18,23 @@ Call script [[header]].
 	share-lsdep: done | sort -k 2,3 >${tmp}
 
 	share-lsdep: case $# in
+
+With no parameters, list all dependencies.
+
 	share-lsdep:     0)
 	share-lsdep:         cat $tmp
 	share-lsdep:         ;;
+
+With one parameter, list dependencies of the given target.
+
 	share-lsdep:     1)
 	share-lsdep:         awk "\$2 ~ /^$1$/{print \$0}" $tmp
+	share-lsdep:         ;;
+
+With two parameters, list dependencies of the given target, which match the given pattern.
+
+	share-lsdep:     2)
+	share-lsdep:         awk "\$2 ~ /^$1$/{print \$0}" $tmp | grep "$2"
 	share-lsdep:         ;;
 	share-lsdep: esac
 
@@ -33,3 +45,9 @@ Call script [[header]].
 	share lsdep
 	share lsdep polylingual_hello.sh
 	share lsdep nope
+
+	share lsdep hello
+	share lsdep hello.o
+	share lsdep hello '\.o$'
+	share lsdep hello '\.o$' | host awk '{print $3}'
+	share lsdep hello.o '\.c'

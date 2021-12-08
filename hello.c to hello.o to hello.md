@@ -25,6 +25,7 @@ List commands.
 Create build script.
 
 	share lib 'tool=gcc' 'in=c' 'out=o' 'file=hello'
+	share catdo hello.o
 
 Remove all dependencies for this object.
 
@@ -35,6 +36,7 @@ Add dependencies.
 	share rmdep hello.o.dep
 
 	share lib 'tool=gcc' 'in=c' 'out=o.dep' 'file=hello'
+	share catdo hello.o.dep
 
 	share do 'set=-x' hello.o.dep
 	share do hello.o.dep
@@ -65,6 +67,7 @@ Create object file.
 Create build script.
 
 	share lib 'tool=gcc' 'in=o' 'out=' 'file=hello'
+	share catdo hello
 
 Remove all dependencies.
 

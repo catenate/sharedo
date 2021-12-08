@@ -3,6 +3,7 @@ changed=false
 target=$1
 shift
 depdir=${target}.dep
+log exec=true $echo share-do ${depdir}
 if ! test -d $depdir; then
     log -- "$target: no dependencies"
     exit 0

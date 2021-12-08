@@ -16,7 +16,7 @@ C source.
 	hello.c:     printf(HELLO "\n");
 	hello.c: }
 
-For .c files, generate the lit comment as a C comment.  #done
+For .c files, generate the lit comment as a C comment.  #done 
 
 	lit 'lit=hello.c.md' 'file=hello.c'
 

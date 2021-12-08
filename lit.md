@@ -1,3 +1,9 @@
+This simple, lightweight tool extracts tagged lines from a source file.   The extracted lines are each prefaced by specific text (the optional [[named parameter]] `tag`) that indicates that the line should be extracted.  The named parameter `file` names the destination file that should contain the extracted text.  The last line of the destination file will (by default, unless `nocomment=true`) contain a line reminding the reader that the file is automatically generated, so the extracted copy should not be edited.
+
+Instead to being catenated into a file, the extracted lines may be parsed by an interpreter named by the named parameter `run`.  This named parameter may include options to the interpreter; the tag in the source file is expected to be only the name of the interpreter, which is the first word of the named parameter `run`.
+
+This all may be considered as simply elaborate commenting, which changes the context of a source code file from comments-in-code to code-in-comments.  The embedded lines are catenated into the destination file, or to the interpreter, in the same order that they appear in the source file.  So this method does not perform one of the most important functions of [[literate programming]]: to reorder portions of the program in a pedagogical order, and embed portions within other portions.  On the other hand, it's easier to find parts of the program, since they appear in the expected order of execution, in the same order as in the extracted file, and the code is fully expanded into its final form.
+
 ###### Usage
 
 Extract this code to a script called `lit`.

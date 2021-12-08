@@ -19,7 +19,7 @@
 
 [[git commit]]: Commit the latest changes.
 
-	git commit -a -m 'Rename lscmd to catdo.  Link all object files that are dependencies of an executable.  Take the sum of the long listing of a directory.  Adding an environment variable resets its dependency to 0.'
+	git commit -a -m 'Comment on lit as a basic literate-programming tool.'
 
 [[git push]]: Push latest commits to the origin git server.
 

@@ -1,5 +1,12 @@
 . header
-lits=$(ls *.md | grep -v ' ')
+case $# in
+    0)
+        lits=$(ls *.md | grep -v ' ')
+        ;;
+    *)
+        lits="$@"
+        ;;
+esac
 for lit in $lits; do
 	files=$(lit lit=$lit | sed -f $(dirname $0)/omit_interpreters.sed)
 	for file in $files; do

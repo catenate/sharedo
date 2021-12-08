@@ -1,3 +1,4 @@
+/^bash$/d
 /^perl$/d
 /^python$/d
 /^ruby$/d

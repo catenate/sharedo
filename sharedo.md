@@ -19,7 +19,7 @@
 
 [[git commit]]: Commit the latest changes.
 
-	git commit -a -m 'Link to a blog post on the human order of literate programs.'
+	git commit -a -m 'Commentary on lit as a literate program tool.  Relit given files.'
 
 [[git push]]: Push latest commits to the origin git server.
 

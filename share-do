@@ -1,6 +1,10 @@
 . header
 target=$1
 shift
+logfile=${logfile-}
+if test -z "$logfile"; then
+    export logfile=${target}.do.log
+fi
 base=$(echo $target | sed 's \.[^.]\+$  ')
 if test -x ${target}.do.do; then
     log exec=true $echo share-do ${base}.do

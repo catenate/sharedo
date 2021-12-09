@@ -11,6 +11,13 @@ Use an existing executable `.do` file to build a target, if any dependency chang
 	share-do: target=$1
 	share-do: shift
 
+If we're not already logging to a file, log to the do log for this target.
+
+	share-do: logfile=${logfile-}
+	share-do: if test -z "$logfile"; then
+	share-do:     export logfile=${target}.do.log
+	share-do: fi
+
 No real value to logging the target, since [[share-chkdep]] lets us know when it calls share-do again, and the log of [[flock]] lets us know about this target.
 
 	log -- "target=$target"

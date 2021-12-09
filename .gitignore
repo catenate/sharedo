@@ -1,8 +1,10 @@
+*.c
 *.dep
 *.do
+*.h
 *.lit
 *.lock
+*.log
+*.o*
+aloha
 hello
-hello.c
-hello.h
-hello.o*

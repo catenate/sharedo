@@ -1,4 +1,4 @@
-[Sharedo](https://github.com/catenate/sharedo) is a [[Bash]] variant of the [[build automation tool]] [[redo]], which constructs build systems from small shared [[shell script]]s.
+[This repo](https://github.com/catenate/sharedo) presents a [[Bash]] variant of the [[build automation tool]] [[redo]], which constructs build systems from small shared [[shell script]]s.
 
 ###### Changes
 

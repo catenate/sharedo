@@ -1,13 +1,17 @@
-##### aloha.c
+### Usage
 
-Header.
+Use relit to extract these files.
+
+	host obsid relit aloha.c.md
+
+### aloha.c
+
+#### Header
 
 	aloha.h: #define ALOHA "aloha"
 	aloha.h: int aloha(void);
 
-	lit 'lit=aloha.c.md' 'file=aloha.h'
-
-C source.
+#### C source
 
 	aloha.c: #include <stdio.h>
 	aloha.c: #include "aloha.h"
@@ -15,13 +19,11 @@ C source.
 	aloha.c:     printf(ALOHA "\n");
 	aloha.c: }
 
-	lit 'lit=aloha.c.md' 'file=aloha.c'
+### helloha.c
 
-##### helloha.c
+![[sharedo/hello.c.md#Header]]
 
-See hello.h in [[hello.c]].
-
-C source.
+#### C source
 
 	helloha.c: #include <stdio.h>
 	helloha.c: #include "aloha.h"
@@ -30,7 +32,3 @@ C source.
 	helloha.c:     aloha();
 	helloha.c:     printf(HELLO "\n");
 	helloha.c: }
-
-For .c files, generate the lit comment as a C comment.  #testing  
-
-	lit 'lit=aloha.c.md' 'file=helloha.c'

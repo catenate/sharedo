@@ -1,14 +1,16 @@
-##### Code
+### Usage
 
-Header.
+Use relit to extract these files.
+
+	host obsid relit hello.c.md
+
+### Code
+
+#### Header
 
 	hello.h: #define HELLO "hello"
 
-For .h files, generate the lit comment as a C comment.  #testing
-
-	lit 'lit=hello.c.md' 'file=hello.h'
-
-C source.
+#### C source
 
 	hello.c: #include <stdio.h>
 	hello.c: #include "hello.h"
@@ -16,11 +18,7 @@ C source.
 	hello.c:     printf(HELLO "\n");
 	hello.c: }
 
-For .c files, generate the lit comment as a C comment.  #testing  
-
-	lit 'lit=hello.c.md' 'file=hello.c'
-
-##### Compile directly to an executable
+### Compile directly to an executable
 
 	share rmdo
 
@@ -36,7 +34,7 @@ For .c files, generate the lit comment as a C comment.  #testing
 
 	host obsid hello
 
-##### Cleanup
+### Cleanup
 
 	share rmdo 'test=true'
 

@@ -6,7 +6,7 @@ Print an indented tree of dependencies of the given target.
 
 Use the script [[header]].
 
-	set -x
+	share-deptree:debug: set -x
 
 	share-deptree: target=$1
 	share-deptree: shift
@@ -35,7 +35,8 @@ Change to the directory of the dependency and print its tree.
 
 ###### Usage
 
-	host obsid lit 'lit=share-deptree.md' 'file=share-deptree'
+	lit 'lit=share-deptree.md' 'file=share-deptree'
+	lit 'lit=share-deptree.md' 'file=share-deptree' 'variant=debug'
 
 Print a dependency tree.
 

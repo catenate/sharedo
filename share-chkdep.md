@@ -28,7 +28,7 @@ If there are still no dependencies, then just rebuild the target.
 	share-chkdep:     exit 0
 	share-chkdep: fi
 
-Calculate the current checksum of each dependency, and determine whether it matches the current location of the dependency.  If not, remove the current entry for the file, and add a new one.
+Calculate the current checksum of each dependency with [[share-sum]], and determine whether it matches the current location of the dependency.  If not, remove the current entry for the file, and add a new one.
 
 Map and parallelize this process, when it matters.  #backlog
 

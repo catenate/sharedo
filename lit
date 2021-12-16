@@ -14,6 +14,7 @@ for arg in "$@"; do
 done
 test -n "$lit"
 tag=${tag-}
+variant=${variant-default}
 file=${file-}
 if test -n "$file"; then
 	dir=$(dirname $file)
@@ -23,7 +24,7 @@ if test -n "$file"; then
 	if ! test -d "$dir"; then
 		mkdir -p $dir
 	fi
-	sed -n "s,^	${tag}: ,,p" $lit >$file
+	sed -n "s,^	${tag}: ,,p;s,^	${tag}:${variant}: ,,p" $lit >$file
 	chmod +x $file
 	nocomment=${nocomment-false}
 	if ! $nocomment; then
@@ -53,9 +54,9 @@ if test -n "$run"; then
 			ext=rb
 			;;
 	esac
-	sed -n "s,^	${tag}: ,,p" $lit >${lit}.${ext}
+	sed -n "s,^	${tag}: ,,p;s,^	${tag}:${variant}: ,,p" $lit >${lit}.${ext}
 	$run ${lit}.${ext} "$@"
 fi
 if test -z "$tag"; then
-	sed -n 's,^	\([^: ]\+\): .*,\1,p' $lit | sort | uniq
+	sed -n 's,^	\([^ ]\+\): .*,\1,p' $lit | sort | uniq
 fi

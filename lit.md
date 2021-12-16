@@ -4,6 +4,8 @@ Instead to being catenated into a file, the extracted lines may be parsed by an 
 
 Multiple output files and interpreter scripts may be extracted from the same source script.  This allows related files to appear in the same place (_eg_ literate-program file), interweaved (as long as each individual file's lines appear in executable order) and discussed together.
 
+Line-by-line variants of a file may be extracted from the same source script.  This allows alternate versions of the file to appear in the same place, and be discussed together.  However, only one variant is in the resulting file at a time.  This may be used, for example, to temporarily debug or develop a file, while preserving the ability to generate a non-debug or stable version of the same file.
+
 This all reasonably may be considered as elaborate commenting, which simply changes the context of a source code file from comments-in-code to code-in-comments.  The embedded lines are catenated into the destination file, or to the interpreter, in the same order that they appear in the source file.  So this method does not perform one of the most important functions of [[literate programming]]: to reorder portions of the program [in a pedagogical order](https://www.johndcook.com/blog/2016/07/06/literate-programming-presenting-code-in-human-order/), and embed named portions within other, surrounding portions.  On the other hand, it's easier to find parts of the program, since they appear in the expected order of execution, in the same order as in the extracted file, and the code is fully expanded into its final form.  An embedded named portion could instead be handled by abstracting it into another named script file, which would allow it to be tested separately, while still discussed in the same source file.
 
 ###### Usage
@@ -11,7 +13,7 @@ This all reasonably may be considered as elaborate commenting, which simply chan
 Extract this code to a script called `lit`.
 
 ```bash
-sed -n 's,^	lit: ,,p' lit.md >lit
+sed -n 's,^	lit: ,,p;s,^	lit:default: ,,p' lit.md >lit
 ```
 
 Test the script in the current directory.
@@ -30,6 +32,26 @@ Print the file as extracted.
 List the available tags to extract from one [[literate program]] file.
 
 	host ./lit 'lit=lit.md'
+
+Cat variants without dumping them to files.
+
+	host ./lit 'lit=lit.md' 'tag=tag' 'run=cat'
+	host ./lit 'lit=lit.md' 'tag=tag' 'run=cat' 'variant=default'
+	host ./lit 'lit=lit.md' 'tag=tag' 'run=cat' 'variant=variant'
+
+Make sure there is only one file, with the current variant.
+
+	rm tag
+	host ./lit 'lit=lit.md' 'file=tag' 'run=cat'
+	host ./lit 'lit=lit.md' 'file=tag' 'run=cat' 'variant=default'
+	host ./lit 'lit=lit.md' 'file=tag' 'run=cat' 'variant=variant'
+	cat tag
+
+Extract a variant of this script.  We can't use lit to extract lit since a script is left open and parsed by the shell as it runs.  If it changes as it's being parsed, then the shell gets confused.
+
+```bash
+sed -n 's,^	lit: ,,p;s,^	lit:chmod: ,,p' lit.md >lit
+```
 
 ###### Code
 
@@ -56,6 +78,7 @@ See [[argenv]].
 	lit: test -n "$lit"
 
 	lit: tag=${tag-}
+	lit: variant=${variant-default}
 
 	lit: file=${file-}
 	lit: if test -n "$file"; then
@@ -72,11 +95,25 @@ If we have a file and we don't have a tag, expect the file to be the tag.
 
 Extract code lines from the literate program file, and remove the tag.
 
-	lit: 	sed -n "s,^	${tag}: ,,p" $lit >$file
+Extract lines with no variant tag, and lines with the given variant tag.  Only one variant tag is used, so each composition of multiple variants must be individually named.  This reduces the chance that the dynamic composition of several variants will result in a file that doesn't work.  #testing
+
+	tag: always
+	tag:variant: if test "$variant" = "variant"
+	tag:default: if test -z "$variant", or . default variant default
+	tag: also always
+
+	lit: 	sed -n "s,^	${tag}: ,,p;s,^	${tag}:${variant}: ,,p" $lit >$file
 
 It shouldn't hurt to make the resulting file executable, even if it won't be executed directly.
 
-	lit: 	chmod +x $file
+	lit:default: 	chmod +x $file
+	
+Alternatively, only execute `chmod $chmod $file` if `$chmod` is set to something (`test -n "$chmod"`).  #testing
+
+	lit:chmod: 	chmod=${chmod-}
+	lit:chmod: 	if test -n "$chmod"; then
+	lit:chmod: 	    chmod $chmod $file
+	lit:chmod: 	fi
 
 Let the reader know that this file was generated, so should not be edited, since the edits will disappear the next time the file is generated.
 
@@ -117,7 +154,7 @@ If the tag is the name of a language, use the language's usual extension.
 	lit: 			;;
 	lit: 	esac
 
-	lit: 	sed -n "s,^	${tag}: ,,p" $lit >${lit}.${ext}
+	lit: 	sed -n "s,^	${tag}: ,,p;s,^	${tag}:${variant}: ,,p" $lit >${lit}.${ext}
 
 Run the extracted file with the given interpreter.
 
@@ -127,5 +164,5 @@ Run the extracted file with the given interpreter.
 If we're not given a tag, list tags available in the given file.
 
 	lit: if test -z "$tag"; then
-	lit: 	sed -n 's,^	\([^: ]\+\): .*,\1,p' $lit | sort | uniq
+	lit: 	sed -n 's,^	\([^ ]\+\): .*,\1,p' $lit | sort | uniq
 	lit: fi

@@ -33,7 +33,7 @@ If there's a ${target}.do.do file, run it to (re-)create ${target}.do.
 	share-do: if test -x ${target}.do; then
 	share-do:     if share-chkdep $target; then
 
-Import the environment set for this target.
+Call [[share-setenv]] in the current shell process, to import the environment set for this target.
 
 	share-do:         . share-setenv $target
 

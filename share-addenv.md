@@ -1,10 +1,10 @@
 [[share build environment]]
 
-Add a [[environment variable]] for a [[target]].
+Add a [[environment variable]] for a [[target]].  Environment variables for a target are set at the start of that target's run of [[share-do]].
 
 ###### Code
 
-	set -x
+	share-addenv:debug: set -x
 
 	share-addenv: target=$1
 	share-addenv: shift
@@ -17,7 +17,7 @@ Add a [[environment variable]] for a [[target]].
 	share-addenv:     mkdir -p $envdir
 	share-addenv: fi
 
-Remove existing dependency and add it again with checksum 0, since the value may have changed.  The checksum needs to be 0 so the target knows it's out-of-date with respect to the new value.
+Remove existing dependency (with [[share-rmdep]]) and add it again (with [[share-adddep]]) with checksum 0, since the value may have changed.  The checksum needs to be 0 so the target knows it's out-of-date with respect to the new value.
 
 	share-addenv: share-rmdep $target "\$$var"
 	share-addenv: share-adddep $target "\$$var"
@@ -29,6 +29,7 @@ Might be better to check the new value against the current value for this target
 ###### Usage
 
 	lit 'lit=share-addenv.md' 'file=share-addenv'
+	lit 'lit=share-addenv.md' 'file=share-addenv' 'variant=debug'
 
 	share addenv hello.o CFLAGS ''
 	share addenv hello.o CFLAGS -O2

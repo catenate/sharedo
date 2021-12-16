@@ -4,7 +4,7 @@ Compute the checksum of the given dependency.
 
 ###### Code
 
-	set -x
+	share-sum:debug: set -x
 
 If the file is a variable ($var), echo the current value of the variable, and take its checksum with [[md5sum]].
 
@@ -43,6 +43,7 @@ Otherwise, keep the checksum unknown.
 ###### Usage
 
 	lit 'lit=share-sum.md' 'file=share-sum'
+	lit 'lit=share-sum.md' 'file=share-sum' 'variant=debug'
 
 	share sum polylingual_hello.md
 

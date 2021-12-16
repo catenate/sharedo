@@ -19,7 +19,7 @@
 
 [[git commit]]: Commit the latest changes.
 
-	git commit -a -m 'Create a new executable from multiple object files.'
+	git commit -a -m 'Handle line-by-line variants of literate programs.'
 
 [[git push]]: Push latest commits to the origin git server.
 

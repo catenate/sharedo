@@ -6,6 +6,7 @@ Use an existing executable `.do` file to build a target, if any dependency chang
 
 ###### Code
 
+	share-do: #!/usr/bin/env bash
 	share-do: . header
 
 	share-do: target=$1

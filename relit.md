@@ -45,8 +45,8 @@ Extract each file tagged in the literate file.
 
 ###### Usage
 
-	host obsid lit 'lit=relit.md' 'file=omit_interpreters.sed'
-	host obsid lit 'lit=relit.md' 'file=relit'
+	lit 'lit=relit.md' 'file=omit_interpreters.sed'
+	lit 'lit=relit.md' 'file=relit'
 
 Test.
 

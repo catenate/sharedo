@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 . header
 target=$1
 shift

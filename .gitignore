@@ -6,5 +6,7 @@
 *.lock
 *.log
 *.o*
+-cat
 aloha
 hello
+tag

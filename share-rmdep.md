@@ -10,7 +10,7 @@ Remove all dependencies of a target, or one dependency of a target.
 	share-rmdep:         ;;
 	share-rmdep:     2)
 	share-rmdep:         dep_quoted=$(echo "$2" | sed 's / \\/ g')
-	share-rmdep:         file=$(grep -l "$dep_quoted" ${1}.dep/*)
+	share-rmdep:         file=$(grep -l "$dep_quoted" ${1}.dep/* 2>/dev/null)
 	share-rmdep:         if test -n "$file"; then
 	share-rmdep:             sed -i "/^${dep_quoted}$/d" $file
 	share-rmdep:         fi

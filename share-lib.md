@@ -9,7 +9,8 @@ Run the script [[header]].
 	share-lib: . header
 
 	share-lib: . default infile ${file}.${in}
-	share-lib: 
+	share-lib: . option out
+
 	share-lib: if test -n "$out"; then
 	share-lib: 	. default outfile ${file}.${out}
 	share-lib: 	. default outdo ${outfile}.do
@@ -22,7 +23,7 @@ Don't overwrite `.do` scripts that already exist and are executable.  This is mo
 
 	if ! test -x $outdo; then
 
-	share-lib: log exec=true $echo cp ${tool}.${in}.${out}.do $outdo
+	share-lib: log exec=true $echo cp ${selfdir}/${tool}.${in}.${out}.do $outdo
 	share-lib: log exec=true $echo chmod +x $outdo
 	share-lib: log exec=true $echo share-adddep $outfile $outdo
 

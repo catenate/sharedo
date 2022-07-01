@@ -43,8 +43,18 @@ Dependencies.
 	nsh share do aloha
 	host ./aloha
 
+#### test
+
+create and run a script to test output of the compiled program  #backlog 
+
 #### cleanup
 
+	share rmdo 'test=true'
+	share rmdo
+
 	share rmdep aloha
+	share rmdep aloha.o
+	share rmdep aloha.o.dep
+	share rmdep helloha
 	share rmdep helloha.o
-	rm aloha
+	share rmdep helloha.o.dep

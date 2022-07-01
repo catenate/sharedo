@@ -2,7 +2,16 @@
 
 Clean up.
 
+	share rmdo 'test=true'
 	share rmdo
+
+	share rmdep aloha
+	share rmdep aloha.o
+	share rmdep aloha.o.dep
+	share rmdep helloha
+	share rmdep helloha.o.dep
+
+	share rmenv hello.o CFLAGS
 
 List all dependencies.
 

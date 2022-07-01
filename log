@@ -1,5 +1,4 @@
 set -eu
-set -o pipefail
 for arg in "$@"; do
 	if echo "$arg" | grep '=' >/dev/null 2>&1; then
 		arg_name=$(echo $arg | sed 's =.*  ')

@@ -11,7 +11,7 @@ Log in this format:
 Optionally execute command, and log output of command.
 
 	log: set -eu
-	log: set -o pipefail
+	log:error: set -o pipefail
 
 Find all initial parameters with assignments, and add them to the environment (_cf_ [[argenv]]).
 

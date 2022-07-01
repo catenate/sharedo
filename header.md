@@ -13,7 +13,7 @@ Extract this literate program.
 Define general shell options.
 
 	header: set -eu
-	set -o pipefail
+	header:error: set -o pipefail
 
 Let the script and any subscripts know its name and location.
 
